@@ -1,0 +1,11 @@
+projection;
+//strict;
+
+define behavior for ZC_Student_356 alias Student
+{
+  use create;
+  use update;
+  use delete;
+
+  use action SetActive;
+}

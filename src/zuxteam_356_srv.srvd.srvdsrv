@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for UX Team'
+define service ZUXteam_356_Srv {
+  expose ZC_UXTeam_356;
+}

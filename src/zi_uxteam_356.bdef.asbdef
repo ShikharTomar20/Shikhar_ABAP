@@ -1,0 +1,29 @@
+managed implementation in class zbp_i_uxteam_356 unique;
+//strict;
+
+define behavior for ZI_UXTeam_356 alias UXTeam
+persistent table zs4d356_d_uxteam
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( numbering : managed, readonly ) Id;
+  field ( readonly ) RoleDescription;
+  action ( features : instance ) SetActive result [1] $self;
+
+  mapping for zs4d356_d_uxteam
+    {
+      Id                 = id;
+      Firstname          = firstname;
+      Lastname           = lastname;
+      Age                = age;
+      Role               = role;
+      Salary             = salary;
+      Active             = active;
+      Lastchangedat      = lastchangedat;
+      Locallastchangedat = locallastchangedat;
+    }
+}

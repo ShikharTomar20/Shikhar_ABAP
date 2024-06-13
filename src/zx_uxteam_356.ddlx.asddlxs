@@ -1,0 +1,60 @@
+@Metadata.layer: #PARTNER
+
+@UI:{ headerInfo:{
+                    typeName: 'Employee',
+                    typeNamePlural: 'Employees',
+                    title:{ type: #STANDARD, label: 'Employee', value: 'Firstname' }
+                  },
+                  presentationVariant: [{ sortOrder: [{ by: 'Id', direction: #ASC }] }]
+                }
+
+
+annotate view ZC_UXTeam_356 with
+{
+  @UI.facet: [{   id: 'Student',
+                  purpose: #STANDARD,
+                  type: #IDENTIFICATION_REFERENCE,
+                  label: 'Student',
+                  position: 10
+                  }]
+
+  @UI.hidden: true
+  Id;
+  @UI: { lineItem: [{ position: 10, label: 'First Name' }],
+  identification: [{ position: 10, label: 'First Name' }],
+  selectionField: [{ position: 10 }] }
+  Firstname;
+  @UI.lineItem: [{ position: 20, label: 'Last Name' }]
+  @UI.identification: [{ position: 20, label: 'Last Name' }]
+  Lastname;
+  @UI.lineItem: [{ position: 30, label: 'Age' }]
+  @UI.identification: [{ position: 30, label: 'Age' }]
+  Age;
+  @UI.lineItem: [{ position: 40, label: 'Role' }]
+  @UI.identification: [{ position: 40, label: 'Role' }]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_Role_VH', element: 'Value' },
+  distinctValues: true,
+  additionalBinding: [{ localElement: 'RoleDescription',
+                        element: 'Description',
+                        usage: #FILTER_AND_RESULT }] }]
+  Role;
+  @UI.lineItem: [{ position: 50, label: 'Role Desc' }]
+  @UI.identification: [{ position: 50, label: 'Role Description' }]
+  RoleDescription;
+  @UI: { lineItem: [{ position: 60, label: 'Active' },
+   { type: #FOR_ACTION, dataAction: 'SetActive', label: 'SetActive' }],
+     identification: [{ position: 60, label: 'Active' },
+   { type: #FOR_ACTION, dataAction: 'SetActive', label: 'SetActive' }] }
+  Active;
+  
+  @UI.hidden: true
+  Salary;
+  @UI.lineItem: [{ position: 65 }]
+  @UI.identification: [{ position: 65 }]
+  MonthlyAmount;
+  @UI.hidden: true
+  Lastchangedat;
+  @UI.hidden: true
+  Locallastchangedat;
+
+}

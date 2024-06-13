@@ -1,0 +1,60 @@
+managed implementation in class zbp_i_student_356 unique;
+//strict;
+
+with draft;
+define behavior for ZI_Student_356 alias Student
+
+persistent table zs4d356_t_stu
+draft table zs4d356_d_stu
+
+lock master total etag LastChangedAt
+authorization master ( instance )
+etag master LocallastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  association _AcademicResult { create; }
+
+  field ( numbering : managed, readonly ) Id;
+  field ( readonly ) GenderDesc;
+  field ( readonly ) Coursedur;
+  action ( features : instance ) SetActive result [1] $self;
+  validation ValidateAge on save { field Age; create; }
+  determination UpdateCourseDur on save { field Course; }
+
+  mapping for zs4d356_t_stu
+    {
+      Id                 = id;
+      Firstname          = firstname;
+      Lastname           = lastname;
+      Age                = age;
+      Course             = course;
+      Coursedur          = coursedur;
+      Status             = status;
+      Gender             = gender;
+      Dob                = dob;
+      LastChangedAt      = lastchangedat;
+      LocallastChangedAt = locallastchangedat;
+    }
+}
+
+define behavior for ZI_StudentRes_356 alias AcademicResult
+persistent table zs4d356_t_result
+draft table zs4d356_d_result
+lock dependent by _Student
+authorization dependent by _Student
+//etag master <field_name>
+{
+
+  update;
+  delete;
+
+  association _Student;
+  field ( readonly ) Id;
+  field ( readonly ) CourseDesc;
+  field ( readonly ) SemesterDesc;
+  field ( readonly ) ResultDesc;
+
+}
